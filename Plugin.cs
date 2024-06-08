@@ -1,21 +1,10 @@
 ﻿using BepInEx;
 using HarmonyLib;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using UK_PCSR;
 using UnityEngine;
-using SystemReflectionOpCodes = System.Reflection.Emit.OpCodes;
-using System.Reflection.Emit;
-using MonoCecilOpCodes = Mono.Cecil.Cil.OpCodes;
-using CodeInstruction = HarmonyLib.CodeInstruction;
-using System.Diagnostics;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
-using System.Runtime.Versioning;
+
 
 
 
@@ -136,42 +125,5 @@ namespace UK_PCSR
             AudioParrySource.volume = 1f; // Set volume level as needed
 
         }
-    }
-
-
-        //TODO: FIX
-        /*static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
-        {
-            var code = new List<CodeInstruction>(instructions);
-            var targetField = AccessTools.Field(typeof(Punch), "specialHit");
-            var replacementField = AccessTools.Field(typeof(Assets), "AudioParrySource");
-
-            for (int i = 0; i < code.Count; i++)
-            {
-                if (code[i].opcode == SystemReflectionOpCodes.Ldfld)
-                {
-                    Debug.LogWarning(code[i].ToString() + " " + i);
-                }
-                else
-                {
-                    Debug.Log(code[i].ToString() + " " + i);
-                }
-                    
-                // Check for the instruction that loads `Punch.specialHit`
-                if (code[i].opcode == SystemReflectionOpCodes.Ldfld && code[i].operand is FieldInfo field && field == targetField)
-                {
-                    // Replace with the instruction to load `Assets.AudioParrySource`
-                    code[i].opcode = SystemReflectionOpCodes.Ldsfld;
-                    code[i].operand = replacementField;
-                    Debug.Log("Replaced field loading instruction");
-                    Debug.Log("New instruction: " + code[i].ToString());
-                }
-            }
-
-            return code.AsEnumerable();
-        }*/
-
-    
-
-    
+    }  
 }
